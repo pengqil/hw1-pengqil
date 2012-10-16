@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+  <primitive>true</primitive>
+  <annotatorImplementationName>hw1.gene.java.SentenceAnnotator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>SentenceAnnotator</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+    <configurationParameters/>
+    <configurationParameterSettings/>
+    <typeSystemDescription>
+      <imports>
+        <import location="../type/SentenceTypeDescriptor.xml"/>
+      </imports>
+    </typeSystemDescription>
+    <typePriorities/>
+    <fsIndexCollection>
+      <fsIndexes>
+        <fsIndexDescription>
+          <label>hw1.gene.java.index2</label>
+          <typeName>model.Sentences</typeName>
+          <kind>sorted</kind>
+          <keys>
+            <fsIndexKey>
+              <featureName>id</featureName>
+              <comparator>standard</comparator>
+            </fsIndexKey>
+          </keys>
+        </fsIndexDescription>
+      </fsIndexes>
+    </fsIndexCollection>
+    <capabilities>
+      <capability>
+        <inputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">model.Sentences</type>
+        </outputs>
+        <languagesSupported/>
+      </capability>
+    </capabilities>
+    <operationalProperties>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
+    </operationalProperties>
+  </analysisEngineMetaData>
+  <resourceManagerConfiguration/>
+</analysisEngineDescription>
