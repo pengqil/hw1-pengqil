@@ -32,7 +32,7 @@ import org.apache.uima.jcas.JCas;
 
 import cmu.hw1.gene.model.Sentences;
 
-import edu.upenn.cis.taggers.gene.GeneTrainer;
+//import edu.upenn.cis.taggers.gene.GeneTrainer;
 /**
  * Generage Training samples and train the data to a model
  * @author lpq1990

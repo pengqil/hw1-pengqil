@@ -10,9 +10,9 @@ import cmu.hw1.gene.model.Sentences;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;
 
-import edu.upenn.cis.taggers.LoadModelException;
-import edu.upenn.cis.taggers.Tagger;
-import edu.upenn.cis.taggers.gene.GeneTagger;
+//import edu.upenn.cis.taggers.LoadModelException;
+//import edu.upenn.cis.taggers.Tagger;
+//import edu.upenn.cis.taggers.gene.GeneTagger;
 
 /**
  * Annotator that find genetag in sentences with its begin and end position.
