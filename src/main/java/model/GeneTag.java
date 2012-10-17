@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Fri Oct 12 13:53:23 EDT 2012
- * XML source: /Users/lpq1990/Documents/workspace/11791/hw1-pengqil/src/main/resources/descriptors/ner/GeneTagAnnotator.xml
+ * Updated by JCasGen Wed Oct 17 07:51:09 EDT 2012
+ * XML source: /Users/lpq1990/Documents/workspace/11791/hw1-pengqil/src/main/resources/descriptors/cpe/AnnotationPrinter.xml
  * @generated */
 public class GeneTag extends Annotation {
   /** @generated

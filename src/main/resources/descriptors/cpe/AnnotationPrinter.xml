@@ -26,13 +26,13 @@
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
-        <import name="org.apache.uima.examples.SourceDocumentInformation"/>
+        <import location="../type/GeneTagSystemDescriptor.xml"/>
       </imports>
     </typeSystemDescription>
     <capabilities>
       <capability>
         <inputs>
-          <type allAnnotatorFeatures="true">org.apache.uima.examples.SourceDocumentInformation</type>
+          <type allAnnotatorFeatures="true">model.GeneTag</type>
         </inputs>
         <outputs/>
         <languagesSupported/>

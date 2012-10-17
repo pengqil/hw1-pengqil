@@ -56,6 +56,12 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
   public static final String PARAM_INPUTDIR = "InputDirectory";
 
   /**
+   * Name of configuration parameter that must be set to the path of a directory containing input
+   * files.
+   */
+  public static final String PARAM_INPUTFILE = "FileName";
+  
+  /**
    * Name of configuration parameter that contains the character encoding used by the input files.
    * If not specified, the default system encoding will be used.
    */
@@ -88,6 +94,7 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
    */
   public void initialize() throws ResourceInitializationException {
     File directory = new File(((String) getConfigParameterValue(PARAM_INPUTDIR)).trim());
+    File fileName = new File(((String) getConfigParameterValue(PARAM_INPUTFILE)).trim());
     mEncoding  = (String) getConfigParameterValue(PARAM_ENCODING);
     mLanguage  = (String) getConfigParameterValue(PARAM_LANGUAGE);
     mRecursive = (Boolean) getConfigParameterValue(PARAM_SUBDIR);
@@ -97,15 +104,16 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
     mCurrentIndex = 0;
 
     // if input directory does not exist or is not a directory, throw exception
-    if (!directory.exists() || !directory.isDirectory()) {
+    if (!directory.exists() || !directory.isFile()) {
       throw new ResourceInitializationException(ResourceConfigurationException.DIRECTORY_NOT_FOUND,
-              new Object[] { PARAM_INPUTDIR, this.getMetaData().getName(), directory.getPath() });
+              new Object[] { PARAM_INPUTFILE, this.getMetaData().getName(), fileName.getPath() });
     }
 
     // get list of files in the specified directory, and subdirectories if the
     // parameter PARAM_SUBDIR is set to True
     mFiles = new ArrayList<File>();
-    addFilesFromDir(directory);
+    mFiles.add(fileName);
+    //addFilesFromDir(directory);
   }
   
   /**
@@ -115,16 +123,6 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
    * 
    * @param dir
    */
-  private void addFilesFromDir(File dir) {
-    File[] files = dir.listFiles();
-    for (int i = 0; i < files.length; i++) {
-      if (!files[i].isDirectory()) {
-        mFiles.add(files[i]);
-      } else if (mRecursive) {
-        addFilesFromDir(files[i]);
-      }
-    }
-  }
 
   /**
    * @see org.apache.uima.collection.CollectionReader#hasNext()

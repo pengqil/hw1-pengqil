@@ -20,6 +20,8 @@ package hw1.gene.java;
 
 
 
+import hw1.gene.java.test.TestResult;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,7 +42,6 @@ import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.ProcessTrace;
 
 /**
- * An example of CAS Consumer. <br>
  * AnnotationPrinter prints to an output file all annotations in the CAS. <br>
  * Parameters needed by the AnnotationPrinter are
  * <ol>
@@ -114,40 +115,23 @@ public class AnnotationPrinter extends CasConsumer_ImplBase implements CasObject
       throw new ResourceProcessException(e);
     }
 
-    boolean titleP = false;
-    String docUri = null;
-    Iterator it = jcas.getAnnotationIndex(SourceDocumentInformation.type).iterator();
-    if (it.hasNext()) {
-      SourceDocumentInformation srcDocInfo = (SourceDocumentInformation) it.next();
-      docUri = srcDocInfo.getUri();
-    }
-
     // iterate and print annotations
     Iterator annotationIter = jcas.getIndexRepository().getIndex("hw1.gene.java.index1").iterator();
     while (annotationIter.hasNext()) {
       GeneTag annot = (GeneTag) annotationIter.next();
-      /*
-      if (titleP == false) {
-        try {
-          fileWriter.write("\n\n<++++NEW DOCUMENT++++>\n");
-          if (docUri != null)
-            fileWriter.write("DOCUMENT URI:" + docUri + "\n");
-          fileWriter.write("\n");
-        } catch (IOException e) {
-          throw new ResourceProcessException(e);
-        }
-        titleP = true;
-      }
-      */
-      // get the text that is enclosed within the annotation in the CAS
-      // System.out.println( annot.getType().getName() + " "+aText);
       try {
         fileWriter.write(annot.getId()+ "|"+annot.getBegin()+" "+annot.getEnd()+"|"+annot.getGeneTag() + "\n");
-        //fileWriter.write(annot.getType().getName() + " " + aText + "\n");
         fileWriter.flush();
       } catch (IOException e) {
         throw new ResourceProcessException(e);
       }
+    }
+    TestResult tr = new TestResult();
+    try {
+      tr.calAccuracy("src/main/resources/data/testing/sample.out", "hw1-pengqil.out");
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
 

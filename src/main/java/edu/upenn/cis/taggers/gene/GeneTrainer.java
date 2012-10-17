@@ -44,6 +44,12 @@ import edu.umass.cs.mallet.base.types.Sequence;
 
 import edu.upenn.cis.taggers.Model;
 
+/**
+ * 
+ * Train Gene Tag model from given training samples
+ *
+ */
+
 public class GeneTrainer
 {
     int numEvaluations = 0;
@@ -59,14 +65,25 @@ public class GeneTrainer
     private static String SEQ = "[atgcu]+";
     private static String BADSUFFIX = ".*ole|.*ane|.*ate|.*ide|.*ine|.*ite|.*ol|.*ose|.*cooh|.*ar|.*ic|.*al|.*ive|.*ly|.*yl|.*ing|.*ry|.*ian|.*ent|.*ward|.*fold|.*ene|.*ory|.*ized|.*ible|.*ize|.*izes|.*ed|.*tion|.*ity|.*ure|.*ence";
     private static String GOODSUFFIX = ".*gene|.*like|.*ase|homeo.*";
-	
-    public static void main (String[] args) throws FileNotFoundException, Exception
+      // TODO Auto-generated constructor stub
+    
+
+    /**
+     * Train Gene Tag Model
+     * @param type train type
+     * @param source input training samples
+     * @param test test file
+     * @param output training output models
+     * @throws FileNotFoundException
+     * @throws Exception
+     */
+    public GeneTrainer (String type, String source, String test, String output ) throws FileNotFoundException, Exception
     {
 
 	CRF4 crf = null;
 	InstanceList trainingData, testingData = null;
 		
-	if(args[0].equals("train")) {
+	if(type.equals("train")) {
 
 	    Pipe p = new SerialPipes (new Pipe[] {
 		new GeneSentence2TokenSequence (),
@@ -119,35 +136,35 @@ public class GeneTrainer
 
 		// List membership criteria - from hugo and NCBI
 		// - gene lists
-		new TrieLexiconMembership("GENELIST1",new File("data/training/gene/lists/hugo.lst.norm"),true),
-		new TrieLexiconMembership("GENELIST2",new File("data/training/gene/lists/Gene.Lexicon.norm"),true),
+		new TrieLexiconMembership("GENELIST1",new File("src/main/resources/data/training/gene/lists/hugo.lst.norm"),true),
+		new TrieLexiconMembership("GENELIST2",new File("src/main/resources/data/training/gene/lists/Gene.Lexicon.norm"),true),
 
 		//AbGene Lists
 		// - gene lists
-		new TrieLexiconMembership("GENELIST3",new File("data/training/gene/abgene_lists/singlegenes.lst.norm"),true),
-		new TrieLexiconMembership("GENELIST4",new File("data/training/gene/abgene_lists/multigenes.lst.norm"),true),
-		new TrieLexiconMembership("GENELIST5",new File("data/training/gene/abgene_lists/othergenes.lst.norm"),true),
-		new TrieLexiconMembership("GENETERMS",new File("data/training/gene/abgene_lists/geneterms.lst.norm"),true),
+		new TrieLexiconMembership("GENELIST3",new File("src/main/resources/data/training/gene/abgene_lists/singlegenes.lst.norm"),true),
+		new TrieLexiconMembership("GENELIST4",new File("src/main/resources/data/training/gene/abgene_lists/multigenes.lst.norm"),true),
+		new TrieLexiconMembership("GENELIST5",new File("src/main/resources/data/training/gene/abgene_lists/othergenes.lst.norm"),true),
+		new TrieLexiconMembership("GENETERMS",new File("src/main/resources/data/training/gene/abgene_lists/geneterms.lst.norm"),true),
 
 		// - False positive filter lists
-		new TrieLexiconMembership("NOTGENE1",new File("data/training/gene/abgene_lists/genbio.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE2",new File("data/training/gene/abgene_lists/aminoacids.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE3",new File("data/training/gene/abgene_lists/restenzymes.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE4",new File("data/training/gene/abgene_lists/celllines.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE5",new File("data/training/gene/abgene_lists/organismsNCBI.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE6",new File("data/training/gene/abgene_lists/nonbio.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE7",new File("data/training/gene/abgene_lists/stopwords.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE8",new File("data/training/gene/abgene_lists/units.lst.norm"),true),
-		new TrieLexiconMembership("NOTGENE9",new File("data/training/gene/lists/common.words"),true),
+		new TrieLexiconMembership("NOTGENE1",new File("src/main/resources/data/training/gene/abgene_lists/genbio.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE2",new File("src/main/resources/data/training/gene/abgene_lists/aminoacids.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE3",new File("src/main/resources/data/training/gene/abgene_lists/restenzymes.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE4",new File("src/main/resources/data/training/gene/abgene_lists/celllines.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE5",new File("src/main/resources/data/training/gene/abgene_lists/organismsNCBI.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE6",new File("src/main/resources/data/training/gene/abgene_lists/nonbio.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE7",new File("src/main/resources/data/training/gene/abgene_lists/stopwords.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE8",new File("src/main/resources/data/training/gene/abgene_lists/units.lst.norm"),true),
+		new TrieLexiconMembership("NOTGENE9",new File("src/main/resources/data/training/gene/lists/common.words"),true),
 				
 		// - context lists
-		new TrieLexiconMembership(new File("data/training/gene/abgene_lists/contextbefore.lst.norm"),true),
-		new TrieLexiconMembership(new File("data/training/gene/abgene_lists/contextafter.lst.norm"),true),
+		new TrieLexiconMembership(new File("src/main/resources/data/training/gene/abgene_lists/contextbefore.lst.norm"),true),
+		new TrieLexiconMembership(new File("src/main/resources/data/training/gene/abgene_lists/contextafter.lst.norm"),true),
 			
 		// - low freq tri grams
-		new ContainsLowFreqTriGram("lowfreqtri.norm",new File("data/training/gene/abgene_lists/lowfreqtri.lst.norm"),true),
-		new TrieLexiconMembership("PETELIST",new File("data/training/gene/lists/PeteList.norm"),true),
-		new ContainsLowFreqTriGram("PETETRI",new File("data/training/gene/lists/PeteList.tri"),true),
+		new ContainsLowFreqTriGram("lowfreqtri.norm",new File("src/main/resources/data/training/gene/abgene_lists/lowfreqtri.lst.norm"),true),
+		new TrieLexiconMembership("PETELIST",new File("src/main/resources/data/training/gene/lists/PeteList.norm"),true),
+		new ContainsLowFreqTriGram("PETETRI",new File("src/main/resources/data/training/gene/lists/PeteList.tri"),true),
 			
 		// List FeatureInWin
 		new FeaturesInWindow("WINDOW=",-1,1,Pattern.compile("GENELIST.*"),true),
@@ -165,7 +182,7 @@ public class GeneTrainer
 
 	    trainingData = new InstanceList (p);
 	    trainingData.add (new LineGroupIterator
-			      (new FileReader (new File (args[1])), Pattern.compile("^$"), true));
+			      (new FileReader (new File (source)), Pattern.compile("^$"), true));
 	    System.out.println ("Number of predicates in training data: "+p.getDataAlphabet().size());
 			
 	    Alphabet data = p.getDataAlphabet();
@@ -174,10 +191,10 @@ public class GeneTrainer
 	    //targets.stopGrowth();
 
 	    testingData = null;
-	    if (!args[2].equals("null")) {
+	    if (!test.equals("null")) {
 		testingData = new InstanceList (p);
 		testingData.add (new LineGroupIterator
-				 (new FileReader (new File (args[2])), Pattern.compile("^$"), true));
+				 (new FileReader (new File (test)), Pattern.compile("^$"), true));
 	    }
 	    else
 		testingData = null;
@@ -202,25 +219,25 @@ public class GeneTrainer
 	    //crf.trainWithFeatureInduction(trainingData,null,testingData,eval,310,10,30,700,0.5,false,null);
 	    
 	    System.out.print("Saving model ... ");
-	    crf.write(new File(args[3]));
+	    crf.write(new File(output));
 	    System.out.println("done.");
 	    
 	}
-	else if(args[0].equals("test")) {
+	else if(type.equals("test")) {
 	    GeneSegmentationEvaluator eval =
 		new GeneSegmentationEvaluator (new String[] {"B-GENE"},
 					       new String[] {"I-GENE"});
 	    
 	    //ObjectInputStream ois;
-	    //ois = new ObjectInputStream(new FileInputStream(args[2]));
+	    //ois = new ObjectInputStream(new FileInputStream(test));
 	    
-	    crf = Model.loadAndRetrieveModel(args[2]);//(CRF4)ois.readObject();
+	    crf = Model.loadAndRetrieveModel(test);//(CRF4)ois.readObject();
 	    crf.getInputAlphabet().stopGrowth();
 	    
 	    SerialPipes p = (SerialPipes)crf.getInputPipe();
 	    
 	    testingData = new InstanceList (p);
-	    testingData.add (new LineGroupIterator (new FileReader (new File (args[1])), Pattern.compile("^$"), true));
+	    testingData.add (new LineGroupIterator (new FileReader (new File (source)), Pattern.compile("^$"), true));
 	
 	    crf.evaluate(eval,testingData);
 	    

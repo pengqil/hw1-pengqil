@@ -45,6 +45,12 @@
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
+      <configurationParameter>
+        <name>FileName</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
@@ -63,6 +69,12 @@
         <name>Language</name>
         <value>
           <string>en</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>FileName</name>
+        <value>
+          <string>src/main/resources/data/sample.in</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

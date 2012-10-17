@@ -2,7 +2,11 @@ package hw1.gene.java.test;
 
 import java.io.*;
 import java.util.*;
-
+/**
+ * Test the GeneTagging result.
+ * @author lpq1990
+ *
+ */
 public class TestResult{
   private int tp = 0;
   private int fp = 0;
@@ -12,7 +16,12 @@ public class TestResult{
   private double F;
   private List<String> realResult = new ArrayList<String>(); 
   private Map<String,Integer> testResult = new HashMap<String,Integer>(); 
-  
+  /**
+   * Testing the precision, recall and F of this Gene Tag Task
+   * @param file1 real sample out
+   * @param file2 tagging result 
+   * @throws IOException 
+   */
   public void calAccuracy(String file1, String file2) throws IOException{
     
     FileReader fr1 = null,fr2 = null;
@@ -52,6 +61,6 @@ public class TestResult{
   
   public static void main(String[] args) throws IOException {
     TestResult tr = new TestResult();
-    tr.calAccuracy("src/main/resources/sample.out", "hw1-pengqil.out");
+    tr.calAccuracy("src/main/resources/data/testing/sample.out", "hw1-pengqil.out");
   }
 }

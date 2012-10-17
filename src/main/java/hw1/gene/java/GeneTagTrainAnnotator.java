@@ -25,7 +25,12 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 
 import edu.umass.cs.mallet.base.types.Instance;
-
+import edu.upenn.cis.taggers.gene.GeneTrainer;
+/**
+ * Generage Training samples and train the data to a model
+ * @author lpq1990
+ *
+ */
 public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
   private Map<String,String> sentences = new HashMap<String,String>();
   private Map<String,List<String>> geneTag = new HashMap<String,List<String>>();
@@ -47,8 +52,22 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    /*Train model from sample data, run when necessary, it takes about 1 hour.*/
+    /*
+    try {
+      GeneTrainer genetr = new GeneTrainer("train", "src/main/resources/data/training/gene/data/training_data.txt","null", "src/main/resources/model/geneModel1.crf");
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    */
   }
-  /*Read from sample.out for constructing training data*/  
+  /**
+   * Read from sample.out for constructing training data
+   * */  
   private void readInFile(JCas aJCas){
     String id = null;
     String sen = null;
@@ -62,7 +81,7 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
     }
     /*Read output result from sample.out and put into a Map*/
     try {
-      fr = new FileReader("src/main/resources/sample.out");
+      fr = new FileReader("src/main/resources/data/testing/sample.out");
       BufferedReader br = new BufferedReader(fr);
       while (br.ready()){
         String sentence = br.readLine();
@@ -87,7 +106,9 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
     
   }
   
-  /*create specific format of training data.*/
+  /**
+   * create specific format of training data.
+   * */
   private void createTrainFile(){
     //read sample input sentences from Map
     sentencesId1 = sentences.keySet();
@@ -145,7 +166,10 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
       trainData.add("");
     }
   }
-  //split sentence with specific format
+  /**
+   * split sentence with specific format
+   * @param s input string
+   */
   private void splitSentence(String s){
     s.trim();
     String[] to = s.split(" ");
@@ -165,7 +189,10 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
       if(flag == false) trainData.add(str+"\tO");
     }   
   } 
-  //split geneword with specific format
+  /**
+   * split geneword with specific format
+   * @param s input string
+   */
   private void splitGene(String s){
     String[] gene = s.split(" ");
     if(gene.length==1){
@@ -179,9 +206,11 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
       }
     }
   }
-  /*write the training data to training_data.txt*/
+  /**
+   * write the training data to training_data.txt
+   * */
   private void writeToFile() throws IOException{
-    outFile = new File("src/main/resources/training_data.txt");
+    outFile = new File("src/main/resources/data/training/gene/data/training_data.txt");
     fileWriter = new FileWriter(outFile);
     for(String s:trainData){
       if(!s.equals("\tO")){
