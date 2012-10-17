@@ -1,4 +1,4 @@
-package hw1.gene.java.test;
+package cmu.hw1.gene.test;
 
 import java.io.*;
 import java.util.*;

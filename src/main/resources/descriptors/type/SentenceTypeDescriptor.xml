@@ -6,7 +6,7 @@
   <vendor/>
   <types>
     <typeDescription>
-      <name>model.Sentences</name>
+      <name>cmu.hw1.gene.model.Sentences</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
       <features>

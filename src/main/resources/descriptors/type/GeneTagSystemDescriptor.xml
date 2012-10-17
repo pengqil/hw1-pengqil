@@ -6,7 +6,7 @@
   <vendor/>
   <types>
     <typeDescription>
-      <name>model.GeneTag</name>
+      <name>cmu.hw1.gene.model.GeneTag</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
       <features>

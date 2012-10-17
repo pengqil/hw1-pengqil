@@ -1,4 +1,4 @@
-package hw1.gene.java;
+package cmu.hw1.gene.java;
 
 /****
  *  Use the training sample to construct a file (training_data.txt) 
@@ -14,17 +14,24 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import model.Sentences;
+
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 
-import edu.umass.cs.mallet.base.types.Instance;
+import cmu.hw1.gene.model.Sentences;
+
 import edu.upenn.cis.taggers.gene.GeneTrainer;
 /**
  * Generage Training samples and train the data to a model
@@ -39,20 +46,22 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
   FileReader fr = null;
   File outFile;
   FileWriter fileWriter;
-  GeneTrainer genetr;
+  //GeneTrainer genetr;
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     /*Read from sample.out for constructing training data*/
-    readInFile(aJCas);
+    //readInFile(aJCas);
     /*create specific format of training data.*/
-    createTrainFile();
-    try {
-      /*write the training data to training_data.txt*/
+    //createTrainFile();
+    /*write the training data to training_data.txt*/
+    /*
+    try {     
       writeToFile();
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    */
     /*Train model from sample data, run when necessary, it takes about 1 hour.*/
     /*
     try {
@@ -68,12 +77,13 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
   }
   /**
    * Read from sample.out for constructing training data
-   * */  
+   * */
+  
   private void readInFile(JCas aJCas){
     String id = null;
     String sen = null;
     /*Read sample input sentences from JCas and put into a Map*/
-    Iterator annotationIter = aJCas.getIndexRepository().getIndex("hw1.gene.java.index3").iterator();
+    Iterator annotationIter = aJCas.getIndexRepository().getIndex("cmu.hw1.gene.java.index3").iterator();
     while (annotationIter.hasNext()) {
       Sentences s = (Sentences)annotationIter.next();
       id = s.getId();

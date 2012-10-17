@@ -2,7 +2,7 @@
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>
-  <annotatorImplementationName>hw1.gene.java.GeneTagAnnotator</annotatorImplementationName>
+  <annotatorImplementationName>cmu.hw1.gene.java.GeneTagAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>GeneTagAnnotator</name>
     <description/>
@@ -20,8 +20,8 @@
     <fsIndexCollection>
       <fsIndexes>
         <fsIndexDescription>
-          <label>hw1.gene.java.index1</label>
-          <typeName>model.GeneTag</typeName>
+          <label>cmu.hw1.gene.java.index1</label>
+          <typeName>cmu.hw1.gene.model.GeneTag</typeName>
           <kind>sorted</kind>
           <keys>
             <fsIndexKey>
@@ -39,10 +39,10 @@
     <capabilities>
       <capability>
         <inputs>
-          <type allAnnotatorFeatures="true">model.Sentences</type>
+          <type allAnnotatorFeatures="true">cmu.hw1.gene.model.Sentences</type>
         </inputs>
         <outputs>
-          <type allAnnotatorFeatures="true">model.GeneTag</type>
+          <type allAnnotatorFeatures="true">cmu.hw1.gene.model.GeneTag</type>
         </outputs>
         <languagesSupported/>
       </capability>

@@ -1,8 +1,8 @@
-package hw1.gene.java;
+package cmu.hw1.gene.java;
 
 
-import model.GeneTag;
-import model.Sentences;
+import cmu.hw1.gene.model.GeneTag;
+import cmu.hw1.gene.model.Sentences;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;

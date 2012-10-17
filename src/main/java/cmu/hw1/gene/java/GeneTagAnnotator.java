@@ -1,11 +1,11 @@
-package hw1.gene.java;
+package cmu.hw1.gene.java;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import model.GeneTag;
-import model.Sentences;
+import cmu.hw1.gene.model.GeneTag;
+import cmu.hw1.gene.model.Sentences;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;
@@ -19,12 +19,26 @@ import edu.upenn.cis.taggers.gene.GeneTagger;
  * @author Pengqi Liu
  */
 public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
-  Tagger tagger = null;
+  //Tagger tagger = null;
   /**
    * @see JCasAnnotator_ImplBase#process(JCas)
    */
   public void process(JCas aJCas) {
-    
+    Iterator annotationIter = aJCas.getAnnotationIndex(Sentences.type).iterator();
+    while (annotationIter.hasNext()) {
+      // Get sentences with their ids
+      Sentences annot = (Sentences) annotationIter.next();
+      String aText = annot.getText();
+      String Text = aText;
+      String id = annot.getId();
+      GeneTag Gene = new GeneTag(aJCas);
+      Gene.setId(id);
+      Gene.setGeneTag(aText);
+      Gene.setBegin(0);
+      Gene.setEnd(5);
+      Gene.addToIndexes();
+    }
+    /*
     try {
       tagger = new GeneTagger("src/main/resources/model/geneModel1.crf.gz");
     } catch (LoadModelException e2) {
@@ -40,9 +54,8 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
       String id = annot.getId();      
       int index = 0;
       try { 
-        /*
-         * tag the sentence
-         */
+
+         //tag the sentence
         ArrayList geneWord = (ArrayList) tagger.taG(aText);
         //System.out.println(result);  
         for(int i=0;i<geneWord.size();i++){
@@ -81,7 +94,9 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
         e.printStackTrace();
       }
     }    
+ */
   }
+  
   
   public static int countblanks(String s){
     int i = 0 ;

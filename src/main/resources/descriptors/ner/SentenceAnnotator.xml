@@ -2,7 +2,7 @@
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>
-  <annotatorImplementationName>hw1.gene.java.SentenceAnnotator</annotatorImplementationName>
+  <annotatorImplementationName>cmu.hw1.gene.java.SentenceAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>SentenceAnnotator</name>
     <description/>
@@ -19,8 +19,8 @@
     <fsIndexCollection>
       <fsIndexes>
         <fsIndexDescription>
-          <label>hw1.gene.java.index2</label>
-          <typeName>model.Sentences</typeName>
+          <label>cmu.hw1.gene.java.index2</label>
+          <typeName>cmu.hw1.gene.model.Sentences</typeName>
           <kind>sorted</kind>
           <keys>
             <fsIndexKey>
@@ -35,7 +35,7 @@
       <capability>
         <inputs/>
         <outputs>
-          <type allAnnotatorFeatures="true">model.Sentences</type>
+          <type allAnnotatorFeatures="true">cmu.hw1.gene.model.Sentences</type>
         </outputs>
         <languagesSupported/>
       </capability>

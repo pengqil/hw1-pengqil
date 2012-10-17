@@ -1,4 +1,4 @@
-package hw1.gene.java;
+package cmu.hw1.gene.java;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
