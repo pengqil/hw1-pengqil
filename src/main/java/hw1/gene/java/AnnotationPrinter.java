@@ -57,7 +57,7 @@ import org.apache.uima.util.ProcessTrace;
 
 public class AnnotationPrinter extends CasConsumer_ImplBase implements CasObjectProcessor {
   File outFile;
-
+  TestResult tr = new TestResult();
   FileWriter fileWriter;
 
   public AnnotationPrinter() {
@@ -126,7 +126,7 @@ public class AnnotationPrinter extends CasConsumer_ImplBase implements CasObject
         throw new ResourceProcessException(e);
       }
     }
-    TestResult tr = new TestResult();
+    
     try {
       tr.calAccuracy("src/main/resources/data/testing/sample.out", "hw1-pengqil.out");
     } catch (IOException e) {

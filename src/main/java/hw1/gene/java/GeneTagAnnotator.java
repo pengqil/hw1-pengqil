@@ -19,12 +19,12 @@ import edu.upenn.cis.taggers.gene.GeneTagger;
  * @author Pengqi Liu
  */
 public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
-
+  Tagger tagger = null;
   /**
    * @see JCasAnnotator_ImplBase#process(JCas)
    */
   public void process(JCas aJCas) {
-    Tagger tagger = null;
+    
     try {
       tagger = new GeneTagger("src/main/resources/model/geneModel1.crf.gz");
     } catch (LoadModelException e2) {

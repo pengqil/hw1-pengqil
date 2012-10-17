@@ -39,6 +39,7 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
   FileReader fr = null;
   File outFile;
   FileWriter fileWriter;
+  GeneTrainer genetr;
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     /*Read from sample.out for constructing training data*/
@@ -55,7 +56,7 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
     /*Train model from sample data, run when necessary, it takes about 1 hour.*/
     /*
     try {
-      GeneTrainer genetr = new GeneTrainer("train", "src/main/resources/data/training/gene/data/training_data.txt","null", "src/main/resources/model/geneModel1.crf");
+      genetr = new GeneTrainer("train", "src/main/resources/data/training/gene/data/training_data.txt","null", "src/main/resources/model/geneModel1.crf");
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

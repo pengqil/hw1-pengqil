@@ -12,7 +12,6 @@ import org.apache.uima.jcas.JCas;
  * @author Pengqi Liu
  */
 public class SentenceAnnotator extends JCasAnnotator_ImplBase {
-
   /**
    * @see JCasAnnotator_ImplBase#process(JCas)
    */
