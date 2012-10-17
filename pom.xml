@@ -141,7 +141,7 @@
     </dependency>
   </dependencies>
   <scm>
-  	<connection>scm:git:git@github.com/lpqcx/hw1-pengqil.git</connection>
-  	<developerConnection>scm:git:git@github.com/lpqcx/hw1-pengqil.git</developerConnection>
+  	<connection>scm:git:git@github.com:lpqcx/hw1-pengqil.git</connection>
+  	<developerConnection>scm:git:git@github.com:lpqcx/hw1-pengqil.git</developerConnection>
   </scm>
 </project>
