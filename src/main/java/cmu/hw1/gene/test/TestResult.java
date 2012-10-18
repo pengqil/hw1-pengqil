@@ -35,6 +35,7 @@ public class TestResult{
     
     BufferedReader br1 = new BufferedReader(fr1);
     BufferedReader br2 = new BufferedReader(fr2);
+    //read sentence of two documents into differnet HashMap
     while (br1.ready()){
       String sentences1 = br1.readLine();
       fn++;
@@ -45,9 +46,11 @@ public class TestResult{
       fp++;
       testResult.put(sentences2, 1);
     }
+    //if sentence match, add the count of right answer with 1
     for (String s:realResult){
       if (testResult.containsKey(s)) tp++;
     }
+    //calculate precision, recall and F
     fp = fp - tp;
     fn = fn - tp;
     Precision = (double)tp/(tp+fp);
@@ -61,6 +64,6 @@ public class TestResult{
   
   public static void main(String[] args) throws IOException {
     TestResult tr = new TestResult();
-    tr.calAccuracy("src/main/resources/data/testing/sample.out", "hw1-pengqil.out");
+    tr.calAccuracy("src/main/resources/data/testing/sample.out", "hw1-xiaoboh");
   }
 }

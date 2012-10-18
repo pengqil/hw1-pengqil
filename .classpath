@@ -21,15 +21,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/mallet-no_gnu.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/opennlp-tools-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/maxent.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/trove.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/mallet-deps.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/ant-nodeps.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/ant.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/crabapple-1.0.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/wordfreak-2.2.jar"/>
-	<classpathentry kind="lib" path="/Users/lpq1990/Documents/CMU/11-791/Homework1/BioTagger/lib/bioTagger.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

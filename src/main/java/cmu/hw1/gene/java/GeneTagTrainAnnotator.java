@@ -32,10 +32,11 @@ import org.apache.uima.jcas.JCas;
 
 import cmu.hw1.gene.model.Sentences;
 
-//import edu.upenn.cis.taggers.gene.GeneTrainer;
+import edu.upenn.cis.taggers.gene.GeneTrainer;
 /**
  * Generage Training samples and train the data to a model
- * @author lpq1990
+ * @author Pengqi Liu
+ * 
  *
  */
 public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
@@ -46,22 +47,21 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
   FileReader fr = null;
   File outFile;
   FileWriter fileWriter;
-  //GeneTrainer genetr;
+  GeneTrainer genetr;
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     /*Read from sample.out for constructing training data*/
-    //readInFile(aJCas);
+    readInFile(aJCas);
     /*create specific format of training data.*/
-    //createTrainFile();
-    /*write the training data to training_data.txt*/
-    /*
+    createTrainFile();
+    /*write the training data to training_data.txt*/    
     try {     
       writeToFile();
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    */
+    
     /*Train model from sample data, run when necessary, it takes about 1 hour.*/
     /*
     try {
@@ -187,8 +187,9 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
     boolean flag = false;
     for(String str:to){
       flag = false;
+      //use Regular Expression to split documents without gene entity 
+      //and tag them with O
       Pattern mytoken = Pattern.compile("[,\\.;!?#$%&'()-/\"]+");
-      //Pattern mytoken = Pattern.compile("[,\\.;!?]+");
       Matcher matcher = mytoken.matcher(str);
       while(matcher.find()){
         if(!(str.substring(0,matcher.start())+"\tO").equals("\tO"))
@@ -201,14 +202,13 @@ public class GeneTagTrainAnnotator extends JCasAnnotator_ImplBase{
     }   
   } 
   /**
-   * split geneword with specific format
+   * split gene word with specific format with tagging
    * @param s input string
    */
   private void splitGene(String s){
     String[] gene = s.split(" ");
     if(gene.length==1){
       trainData.add(gene[0]+"\tB-GENE");
-      //System.out.println(gene[0]+"\tB-GENE");
     }
     else{
       trainData.add(gene[0]+"\tB-GENE");

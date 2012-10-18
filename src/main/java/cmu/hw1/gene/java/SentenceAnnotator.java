@@ -20,7 +20,7 @@ public class SentenceAnnotator extends JCasAnnotator_ImplBase {
     String docText = aJCas.getDocumentText();
     // split into sentence
     String[] Sentence = docText.split("\n");
-    // save to JCas
+    // save to JCas 
     for(String s:Sentence){
       int index = s.indexOf(" ");
       String id = s.substring(0, index);

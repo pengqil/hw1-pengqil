@@ -10,36 +10,25 @@ import cmu.hw1.gene.model.Sentences;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.jcas.JCas;
 
-//import edu.upenn.cis.taggers.LoadModelException;
-//import edu.upenn.cis.taggers.Tagger;
-//import edu.upenn.cis.taggers.gene.GeneTagger;
+import edu.upenn.cis.taggers.LoadModelException;
+import edu.upenn.cis.taggers.Tagger;
+import edu.upenn.cis.taggers.gene.GeneTagger;
 
 /**
  * Annotator that find genetag in sentences with its begin and end position.
  * @author Pengqi Liu
+ *
  */
 public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
-  //Tagger tagger = null;
+  Tagger tagger = null;
   /**
    * @see JCasAnnotator_ImplBase#process(JCas)
    */
   public void process(JCas aJCas) {
-    Iterator annotationIter = aJCas.getAnnotationIndex(Sentences.type).iterator();
-    while (annotationIter.hasNext()) {
-      // Get sentences with their ids
-      Sentences annot = (Sentences) annotationIter.next();
-      String aText = annot.getText();
-      String Text = aText;
-      String id = annot.getId();
-      GeneTag Gene = new GeneTag(aJCas);
-      Gene.setId(id);
-      Gene.setGeneTag(aText);
-      Gene.setBegin(0);
-      Gene.setEnd(5);
-      Gene.addToIndexes();
-    }
-    /*
+
+    
     try {
+      //use the geneModel1 to tag the documents
       tagger = new GeneTagger("src/main/resources/model/geneModel1.crf.gz");
     } catch (LoadModelException e2) {
       // TODO Auto-generated catch block
@@ -71,18 +60,18 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
             gene = gene + s.trim() + "-";
           }
           gene = gene.substring(0, gene.length()-1);
-          //System.out.println(gene);
           GeneTag Gene = new GeneTag(aJCas);
           Gene.setId(id);
-          Gene.setGeneTag(gene);          
+          Gene.setGeneTag(gene);  
+          //calculate begin and end position
           if(index>=0){
             index = index + Text.indexOf(gene);
             if(index>=0){
               int count = countblanks(aText.substring(0, index));
               Gene.setBegin(index-count);
-              //System.out.println(id);
               count = count + countblanks(gene);
               Gene.setEnd(index + gene.length() - count - 1);
+              //add geneTag to JCas index
               Gene.addToIndexes();
             }
             Text = aText.substring(index+1);
@@ -94,10 +83,14 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
         e.printStackTrace();
       }
     }    
- */
+ 
   }
   
-  
+  /**
+   * calculate number of space in a string
+   * @param s input string
+   * @return
+   */
   public static int countblanks(String s){
     int i = 0 ;
     int count = 0;
