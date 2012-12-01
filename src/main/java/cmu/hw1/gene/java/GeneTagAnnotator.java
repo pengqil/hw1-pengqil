@@ -102,4 +102,3 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
      return count;
   }
 }
-

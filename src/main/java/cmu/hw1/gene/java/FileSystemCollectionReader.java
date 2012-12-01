@@ -104,7 +104,7 @@ public class FileSystemCollectionReader extends CollectionReader_ImplBase {
     mCurrentIndex = 0;
 
     // if input directory does not exist or is not a directory, throw exception
-    if (!directory.exists() || !directory.isFile()) {
+    if (!fileName.exists() || !fileName.isFile()) {
       throw new ResourceInitializationException(ResourceConfigurationException.DIRECTORY_NOT_FOUND,
               new Object[] { PARAM_INPUTFILE, this.getMetaData().getName(), fileName.getPath() });
     }
