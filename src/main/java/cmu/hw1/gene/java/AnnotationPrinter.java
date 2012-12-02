@@ -123,13 +123,14 @@ public class AnnotationPrinter extends CasConsumer_ImplBase implements CasObject
         throw new ResourceProcessException(e);
       }
     }
-    
+    /*
     try {
       tr.calAccuracy("src/main/resources/data/testing/sample.out", "hw1-pengqil.out");
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    */
   }
 
   /**
