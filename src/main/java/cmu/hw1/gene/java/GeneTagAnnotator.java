@@ -12,7 +12,6 @@ import org.apache.uima.jcas.JCas;
 
 import edu.upenn.cis.taggers.LoadModelException;
 import edu.upenn.cis.taggers.Tagger;
-import edu.upenn.cis.taggers.gene.GeneTagger;
 
 /**
  * Annotator that find genetag in sentences with its begin and end position.
@@ -21,6 +20,7 @@ import edu.upenn.cis.taggers.gene.GeneTagger;
  */
 public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
   Tagger tagger = null;
+  String tokenPath = "model/BioTok.bin.gz";
   /**
    * @see JCasAnnotator_ImplBase#process(JCas)
    */
@@ -29,7 +29,7 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
     
     try {
       //use the geneModel1 to tag the documents
-      tagger = new GeneTagger("src/main/resources/model/geneModel1.crf.gz");
+      tagger = new GeneTagger("model/geneModel1.crf.gz");
     } catch (LoadModelException e2) {
       // TODO Auto-generated catch block
       e2.printStackTrace();
@@ -45,7 +45,7 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
       try { 
 
          //tag the sentence
-        ArrayList geneWord = (ArrayList) tagger.taG(aText);
+        ArrayList geneWord = (ArrayList) ((GeneTagger) tagger).tAG(aText, tokenPath);
         //System.out.println(result);  
         for(int i=0;i<geneWord.size();i++){
           String gene = geneWord.get(i).toString();
